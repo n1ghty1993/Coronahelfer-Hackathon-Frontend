@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import './style.scss';
 import { ReactComponent as Logo } from '../../images/logo.svg';
+import { Link } from 'react-router-dom';
 
 interface IProps {
   authenticated: Boolean;
@@ -9,12 +10,22 @@ interface IProps {
 const Nav: FC<IProps> = ({ authenticated }) => {
   return (
     <nav>
-      <Logo id={'logo'} />
+      <Link to="/">
+        <Logo id={'logo'} />
+      </Link>
       <ul className="actions">
-        <li>HELFEN</li>
-        <li>HILFE BEKOMMEN</li>
-        <li>INFORMATIONEN</li>
-        <li>KONTAKT</li>
+        <li>
+          <Link to="/help">HELFEN</Link>
+        </li>
+        <li>
+          <Link to="/get-help">HILFE BEKOMMEN</Link>
+        </li>
+        <li>
+          <Link to="/information">INFORMATIONEN</Link>
+        </li>
+        <li>
+          <Link to="/contact">KONTAKT</Link>
+        </li>
         <li className="login-btn">LOGIN</li>
       </ul>
     </nav>

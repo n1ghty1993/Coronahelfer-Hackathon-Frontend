@@ -1,5 +1,8 @@
 import React, { FC } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+
 import Nav from '../Nav';
+import Routes from '../Routes';
 import Footer from '../Footer';
 
 interface IProps {
@@ -8,10 +11,13 @@ interface IProps {
 
 const Layout: FC<IProps> = ({ children, authenticated }) => {
   return (
-    <div className="layout">
-      <Nav authenticated={authenticated} />
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <div className="layout">
+        <Nav authenticated={authenticated} />
+        <Routes />
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 };
 
