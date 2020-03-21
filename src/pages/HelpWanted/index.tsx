@@ -1,23 +1,19 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { FC } from 'react';
+
 import './style.scss';
 
 import Body from '../../components/Body';
 import Button from '../../components/Button';
 import Header from '../../components/Header';
 
-function StartPage() {
+const Nav: FC = () => {
   return (
     <div className="StartPage">
       <Header>
         <h1>Gemeinsam Helfen</h1>
         <div className="button-bar">
-          <Link to="/get-help">
-            <Button style={{ marginRight: 30 }}>Ich brauche Hilfe</Button>
-          </Link>
-          <Link to="/help">
-            <Button>Ich möchte helfen</Button>
-          </Link>
+          <Button style={{ marginRight: 30 }}>Ich brauche Hilfe</Button>
+          <Button>Ich möchte helfen</Button>
         </div>
       </Header>
       <Body>
@@ -38,6 +34,6 @@ function StartPage() {
       </Body>
     </div>
   );
-}
+};
 
-export default StartPage;
+export default Nav;

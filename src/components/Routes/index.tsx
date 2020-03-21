@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import StartPage from '../../pages/StartPage';
+import HelpWanted from '../../pages/HelpWanted';
 
 export default function Base() {
   return (
@@ -13,7 +14,7 @@ export default function Base() {
         <div>Helfen!</div>
       </Route>
       <Route path="/get-help">
-        <div>Hilfe bekommen</div>
+        <HelpWanted />
       </Route>
       <Route path="/information">
         <div>Informationen</div>
