@@ -2,6 +2,12 @@
   "name": "coronahelfer-webclient",
   "version": "0.1.0",
   "private": true,
+  "contributors": [
+    {
+      "name": "Pascal Schlicht",
+      "email": "post@pascalschlicht.de"
+    }
+  ],
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -10,11 +16,21 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "node-sass": "^4.13.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
     "typescript": "~3.7.2"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/n1ghty1993/Coronahelfer-Hackathon-Frontend.git"
+  },
+  "keywords": [
+    "coronahelfer",
+    "corona",
+    "wirvsvirus"
+  ],
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -35,5 +51,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": true,
+    "trailingComma": "all"
   }
 }
