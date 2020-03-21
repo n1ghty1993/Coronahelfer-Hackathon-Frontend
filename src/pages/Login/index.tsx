@@ -20,6 +20,7 @@ function Login() {
   const auth: IAuthContext = useContext(Auth);
   const [name, setName] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [error, setError] = useState<string | null>(null);
 
   const login = async (e: any) => {
     e.preventDefault();
@@ -53,13 +54,13 @@ function Login() {
       });
     } catch (e) {
       console.log(e);
-
-      // TODO: Error alert
+      setError('E-Mail/Telefonnummer oder Passwort falsch.');
     }
   };
 
   return (
     <form className="login">
+      {error && <div className="error">{error}</div>}
       <input
         type="text"
         placeholder="E-Mail oder Telefonnummer"
@@ -84,6 +85,7 @@ function Register() {
   const [passwordRepeat, setPasswordRepeat] = useState<string>('');
   const [mail, setMail] = useState<string>('');
   const [phone, setPhone] = useState<string>('');
+  const [error, setError] = useState<string | null>(null);
 
   const register = async (e: any) => {
     e.preventDefault();
@@ -127,13 +129,15 @@ function Register() {
       });
     } catch (e) {
       console.log(e);
-
-      // TODO: Error alert
+      setError(
+        'Registrierung konnte nicht abgeschlossen werden. Überprüfen sie ihre Eingabe.',
+      );
     }
   };
 
   return (
     <form className="register">
+      {error && <div className="error">{error}</div>}
       <div className="aligner">
         <div className="left">
           <div className="avatar" />

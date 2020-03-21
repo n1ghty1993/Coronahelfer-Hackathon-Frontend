@@ -8,15 +8,16 @@ import Base from '../Routes';
 
 export interface IAuth {
   authenticated: Boolean;
-  firstname: string;
-  lastname: string;
-  email: string;
-  token: string;
+  firstname: string | null;
+  lastname: string | null;
+  email: string | null;
+  token: string | null;
 }
 
 export interface IAuthContext {
   auth: IAuth;
   set: Function;
+  logout: Function;
 }
 
 // Create Auth context
@@ -26,10 +27,10 @@ export const Auth = React.createContext<IAuthContext>();
 function App() {
   const [auth, setAuth] = useState<IAuth>({
     authenticated: false,
-    firstname: '',
-    lastname: '',
-    email: '',
-    token: '',
+    firstname: null,
+    lastname: null,
+    email: null,
+    token: null,
   });
 
   useEffect(() => {
@@ -40,9 +41,9 @@ function App() {
           // TODO: Fetch user info /users/me
           setAuth({
             authenticated: true,
-            firstname: '',
-            lastname: '',
-            email: '',
+            firstname: null,
+            lastname: null,
+            email: null,
             token: window.localStorage.getItem('coronahelp-token') as string,
           });
         } catch (e) {
@@ -54,9 +55,20 @@ function App() {
     run();
   }, []);
 
+  const logout = () => {
+    setAuth({
+      authenticated: false,
+      firstname: null,
+      lastname: null,
+      email: null,
+      token: null,
+    });
+    window.localStorage.removeItem('coronahelp-token');
+  };
+
   return (
     <div className="App">
-      <Auth.Provider value={{ auth, set: setAuth }}>
+      <Auth.Provider value={{ auth, set: setAuth, logout: logout }}>
         <BrowserRouter>
           <Layout>
             <Base />

@@ -1,18 +1,20 @@
 @import '../../styles/colors.scss';
 
 button {
-    background: white;
-    border: 0;
-    border-radius: 19px;
-    color: $secondary;
-    cursor: pointer;
-    font-size: 20px;
-    font-weight: 400;
-    padding: 10px 50px;
-    text-transform: uppercase;
-
-    &.primary {
-        background: $secondary;
-        color: white;
-    }
+  background: white;
+  border: 0;
+  border-radius: 19px;
+  color: $secondary;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 400;
+  padding: 10px 50px;
+  text-transform: uppercase;
+  &:focus {
+    outline: none;
+  }
+  &.primary {
+    background: $secondary;
+    color: white;
+  }
 }
