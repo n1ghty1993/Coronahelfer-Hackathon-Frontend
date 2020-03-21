@@ -1,0 +1,15 @@
+.layout {
+    background: url('../../images/background.jpg') no-repeat;
+    background-size: cover;
+
+    h1 {
+        color: white;
+        font-size: 40px;
+        text-transform: uppercase;
+    }
+
+    .content {
+        margin: auto;
+        max-width: 600px;
+    }
+}

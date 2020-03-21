@@ -1,0 +1,12 @@
+@import '../../styles/colors.scss';
+
+button {
+    background: white;
+    border: 0;
+    border-radius: 19px;
+    color: $secondary;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 10px 50px;
+    text-transform: uppercase;
+}
