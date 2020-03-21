@@ -6,32 +6,52 @@ import Layout from '../Layout';
 
 import Base from '../Routes';
 
-interface IAuth {
+export interface IAuth {
   authenticated: Boolean;
-  nickname: string;
+  firstname: string;
+  lastname: string;
+  email: string;
   token: string;
+}
+
+export interface IAuthContext {
+  auth: IAuth;
+  set: Function;
 }
 
 // Create Auth context
 // @ts-ignore
-export const Auth = React.createContext();
+export const Auth = React.createContext<IAuthContext>();
 
 function App() {
   const [auth, setAuth] = useState<IAuth>({
     authenticated: false,
-    nickname: '',
+    firstname: '',
+    lastname: '',
+    email: '',
     token: '',
   });
 
   useEffect(() => {
-    // Check if jwt is valid
-    // if (true) {
-    // setAuth({
-    //   authenticated: true,
-    //   nickname: '',
-    //   token: ''
-    // })
-    // }
+    const run = async () => {
+      // Check if jwt is valid
+      if (window.localStorage.getItem('coronahelp-token')) {
+        try {
+          // TODO: Fetch user info /users/me
+          setAuth({
+            authenticated: true,
+            firstname: '',
+            lastname: '',
+            email: '',
+            token: window.localStorage.getItem('coronahelp-token') as string,
+          });
+        } catch (e) {
+          console.log(e);
+        }
+      }
+    };
+
+    run();
   }, []);
 
   return (

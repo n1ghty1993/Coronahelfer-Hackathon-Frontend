@@ -35,6 +35,9 @@
         &:focus {
           outline: none;
         }
+        &.spacer {
+          margin-bottom: 15px;
+        }
       }
       button {
         background-color: $secondary;
