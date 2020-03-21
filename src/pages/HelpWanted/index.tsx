@@ -1,36 +1,49 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 
 import './style.scss';
 
 import Body from '../../components/Body';
-import Button from '../../components/Button';
 import Header from '../../components/Header';
+import Request from './components/Request';
+
+import { IRequest } from './components/Request/types';
+
+const callApi = async (url = '', data = {}, method = 'GET') => {
+  const response = await fetch(`http://localhost:3000/api/v1${url}`, {
+    method: 'GET',
+    mode: 'cors',
+    cache: 'no-cache',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Access-Token':
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTc2MTFhN2MwNmE5NjI0NjBjNWMzMWQiLCJlbWFpbCI6ImFydW5AZXhhbXBsZS5jb20iLCJpYXQiOjE1ODQ4MTAzNTksImV4cCI6MTU4NDg5Njc1OX0._LAV-6eCc0-83j_GFryk6qaCgWeCGM-7hgU5RHyyE9I',
+    },
+    body:
+      method === 'POST' || method === 'PUT' ? JSON.stringify(data) : undefined, // body data type must match "Content-Type" header
+  });
+  return await response.json(); // parses JSON response into native JavaScript objects
+};
 
 const Nav: FC = () => {
+  const [requests, setRequests] = useState<Array<IRequest>>([]);
+
+  useEffect(() => {
+    const fetchRequests = async () => {
+      const result = await callApi('/request');
+      setRequests(result.result);
+    };
+    fetchRequests();
+  }, []);
+
   return (
-    <div className="StartPage">
+    <div className="RequestPage">
       <Header>
-        <h1>Gemeinsam Helfen</h1>
-        <div className="button-bar">
-          <Button style={{ marginRight: 30 }}>Ich brauche Hilfe</Button>
-          <Button>Ich möchte helfen</Button>
-        </div>
+        <h1>Gesuche</h1>
       </Header>
       <Body>
-        <article>
-          <h2>Was machen wir?</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-            erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-            et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-            Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-            sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-            et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-            accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-            no sea takimata sanctus est Lorem ipsum dolor sit amet.
-          </p>
-        </article>
+        {requests.map(request => (
+          <Request key={request.title} user={undefined} request={request} />
+        ))}
       </Body>
     </div>
   );
