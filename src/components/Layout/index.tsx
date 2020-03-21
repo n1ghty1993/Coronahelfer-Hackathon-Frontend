@@ -1,5 +1,7 @@
 import React, { FC } from 'react';
 
+import './style.scss';
+
 import Nav from '../Nav';
 import Footer from '../Footer';
 

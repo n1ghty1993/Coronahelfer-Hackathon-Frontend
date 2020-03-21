@@ -2,11 +2,13 @@
 
 footer {
   background-color: $primary;
+  bottom: 0;
   display: flex;
   align-items: center;
   color: WHITE;
   font-size: 13px;
   height: 80px;
-  margin-top: 20px;
   justify-content: space-around;
+  position: absolute;
+  width: 100%;
 }

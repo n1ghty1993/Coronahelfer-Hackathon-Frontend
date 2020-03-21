@@ -1,4 +1,5 @@
 @import '../styles/colors.scss';
+@import '../styles/sizes.scss';
 
 * {
   font-family: 'Open Sans', sans-serif;
@@ -6,6 +7,32 @@
 
 html,
 body {
+  height: 100%;
   padding: 0;
   margin: 0;
+}
+
+body {
+  &:after {
+    content: '';
+    display: block;
+    height: 80px;
+    /* Set same as footer's height */
+  }
+
+  position: relative;
+}
+
+h1,
+h2 {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: $h1;
+}
+
+h3 {
+  font-size: $h2;
 }

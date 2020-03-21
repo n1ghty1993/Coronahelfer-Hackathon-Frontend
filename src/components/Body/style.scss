@@ -1,0 +1,16 @@
+.body {
+    &:before {
+        background-color: white;
+        border-radius: 100%;
+        content: '';
+        height: 50px;
+        position: absolute;
+        top: -25px;
+        width: 100%;
+    }
+
+    background-color: white;
+    margin-top: 60px;
+    padding: 20px 0 20px;
+    position: relative;
+}
