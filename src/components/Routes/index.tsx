@@ -19,6 +19,9 @@ export default function Base() {
       <Route path="/login">
         <div>Login</div>
       </Route>
+      <Route>
+        <div>Default Home</div>
+      </Route>
     </Switch>
   );
 }

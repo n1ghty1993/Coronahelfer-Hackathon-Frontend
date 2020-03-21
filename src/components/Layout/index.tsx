@@ -3,14 +3,10 @@ import React, { FC } from 'react';
 import Nav from '../Nav';
 import Footer from '../Footer';
 
-interface IProps {
-  authenticated: Boolean;
-}
-
-const Layout: FC<IProps> = ({ children, authenticated }) => {
+const Layout: FC = ({ children }) => {
   return (
     <div className="layout">
-      <Nav authenticated={authenticated} />
+      <Nav />
       {children}
       <Footer />
     </div>
