@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import StartPage from '../../pages/StartPage';
 import HelpWanted from '../../pages/HelpWanted';
+import Login from '../../pages/Login';
 
 export default function Base() {
   return (
@@ -23,10 +24,7 @@ export default function Base() {
         <div>Kontakt</div>
       </Route>
       <Route path="/login">
-        <div>Login</div>
-      </Route>
-      <Route>
-        <div>Default Home</div>
+        <Login />
       </Route>
     </Switch>
   );
