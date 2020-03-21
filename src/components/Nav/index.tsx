@@ -1,13 +1,12 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import './style.scss';
 import { ReactComponent as Logo } from '../../images/logo.svg';
 import { Link } from 'react-router-dom';
+import { Auth } from '../App';
 
-interface IProps {
-  authenticated: Boolean;
-}
+const Nav: FC = () => {
+  const auth = useContext(Auth);
 
-const Nav: FC<IProps> = ({ authenticated }) => {
   return (
     <nav>
       <Link to="/">
@@ -26,7 +25,9 @@ const Nav: FC<IProps> = ({ authenticated }) => {
         <li>
           <Link to="/contact">KONTAKT</Link>
         </li>
-        <li className="login-btn">LOGIN</li>
+        <li className="login-btn">
+          <Link to="/login">LOGIN</Link>
+        </li>
       </ul>
     </nav>
   );
