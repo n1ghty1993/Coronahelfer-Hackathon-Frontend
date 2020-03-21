@@ -1,9 +1,18 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import './style.scss';
 import { ReactComponent as Logo } from '../../images/logo.svg';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { Auth, IAuthContext } from '../App';
 
 const Nav: FC = () => {
+  const auth: IAuthContext = useContext(Auth);
+  const history = useHistory();
+
+  const logout = () => {
+    auth.logout();
+    history.push('/login');
+  };
+
   return (
     <nav>
       <Link to="/">
@@ -23,7 +32,11 @@ const Nav: FC = () => {
           <Link to="/contact">KONTAKT</Link>
         </li>
         <li className="login-btn">
-          <Link to="/login">LOGIN</Link>
+          {auth.auth.authenticated ? (
+            <button onClick={logout}>ABMELDEN</button>
+          ) : (
+            <Link to="/login">LOGIN</Link>
+          )}
         </li>
       </ul>
     </nav>

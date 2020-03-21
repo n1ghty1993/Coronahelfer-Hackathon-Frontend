@@ -17,7 +17,7 @@ export const callApi = async (
     cache: 'no-cache',
     headers: {
       'Content-Type': 'application/json',
-      'X-Access-Token': auth.auth.token,
+      'X-Access-Token': auth.auth.token as string,
     },
     body:
       method === 'POST' || method === 'PUT' ? JSON.stringify(data) : undefined, // body data type must match "Content-Type" header
