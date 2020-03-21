@@ -2,7 +2,7 @@ import React from 'react';
 import './style.scss';
 import Layout from '../Layout';
 
-import Base from '../../routes/base';
+import Base from '../../routes/Page/Base';
 
 function App() {
   return (
