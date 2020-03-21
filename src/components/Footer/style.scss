@@ -1,0 +1,12 @@
+@import '../../styles/colors.scss';
+
+footer {
+  background-color: $primary;
+  display: flex;
+  align-items: center;
+  color: WHITE;
+  font-size: 13px;
+  height: 80px;
+  margin-top: 20px;
+  justify-content: space-around;
+}
