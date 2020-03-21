@@ -14,10 +14,10 @@ export default function Base() {
         <StartPage />
       </Route>
       <Route path="/help">
-        <div>Helfen!</div>
+        <HelpWanted />
       </Route>
       <Route path="/get-help">
-        <HelpWanted />
+        <div>Hilfe bekommen</div>
       </Route>
       <Route path="/information">
         <div>Informationen</div>

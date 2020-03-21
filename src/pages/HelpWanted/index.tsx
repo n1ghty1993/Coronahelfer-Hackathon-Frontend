@@ -1,39 +1,47 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useEffect, useContext } from 'react';
 
 import './style.scss';
 
-import Body from '../../components/Body';
-import Button from '../../components/Button';
-import Header from '../../components/Header';
+import { callApi } from '../../api/requests';
 
-const Nav: FC = () => {
+import { Auth, IAuthContext } from '../../components/App';
+import Body from '../../components/Body';
+import Header from '../../components/Header';
+import Request from './components/Request';
+
+import { IRequest } from './components/Request/types';
+
+const HelpWanted: FC = () => {
+  const auth: IAuthContext = useContext(Auth);
+
+  const [requests, setRequests] = useState<Array<IRequest>>([]);
+
+  useEffect(() => {
+    const fetchRequests = async () => {
+      const result = await callApi('/request', auth);
+      setRequests(result.result);
+    };
+
+    try {
+      fetchRequests();
+    } catch (err) {
+      console.log(err);
+    }
+  });
+
   return (
-    <div className="StartPage">
+    <div className="RequestPage">
       <Header>
-        <h1>Gemeinsam Helfen</h1>
-        <div className="button-bar">
-          <Button style={{ marginRight: 30 }}>Ich brauche Hilfe</Button>
-          <Button>Ich möchte helfen</Button>
-        </div>
+        <h1>Gesuche</h1>
       </Header>
       <Body>
-        <article>
-          <h2>Was machen wir?</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-            erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-            et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-            Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-            sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-            et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-            accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-            no sea takimata sanctus est Lorem ipsum dolor sit amet.
-          </p>
-        </article>
+        {requests.map(request => (
+          <Request key={request.title} user={undefined} request={request} />
+        ))}
+        {!requests.length && <article>Momentan gibt es keine Gesuche!</article>}
       </Body>
     </div>
   );
 };
 
-export default Nav;
+export default HelpWanted;

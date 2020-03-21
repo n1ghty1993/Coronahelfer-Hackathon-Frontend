@@ -1,12 +1,9 @@
-import React, { FC, useContext } from 'react';
+import React, { FC } from 'react';
 import './style.scss';
 import { ReactComponent as Logo } from '../../images/logo.svg';
 import { Link } from 'react-router-dom';
-import { Auth } from '../App';
 
 const Nav: FC = () => {
-  const auth = useContext(Auth);
-
   return (
     <nav>
       <Link to="/">

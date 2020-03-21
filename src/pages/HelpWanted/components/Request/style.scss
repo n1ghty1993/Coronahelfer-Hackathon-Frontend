@@ -1,0 +1,40 @@
+@import '../../../../styles/colors.scss';
+
+.request {
+    h2 {
+        color: $secondary;
+        margin: 0;
+        flex-shrink: 1;
+    }
+
+    header {
+        align-items: center;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .avatar {
+        margin-right: 20px;
+        width: 80px;
+        height: 80px;
+        background: #ddd;
+        border-radius: 80px;
+        overflow: hidden;
+        flex-shrink: 0;
+
+        .placeholder {
+            font-size: 53px;
+            color: white;
+        }
+    }
+
+    .intro {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+    }
+
+    button {
+        margin-left: auto;
+    }
+}
