@@ -10,7 +10,8 @@ nav {
   box-sizing: border-box;
   height: 90px;
   padding: 0 80px;
-  > #logo {
+  > a #logo {
+    margin-top: 13px;
     width: 130px;
   }
   > ul.actions {
@@ -21,6 +22,10 @@ nav {
     li {
       font-size: 13px;
       margin-left: 20px;
+      a {
+        color: white;
+        text-decoration: none;
+      }
       &.login-btn {
         background-color: $secondary;
         padding: 3px 20px;

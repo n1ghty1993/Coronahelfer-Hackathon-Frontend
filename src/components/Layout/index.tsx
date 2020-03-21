@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+
 import Nav from '../Nav';
 import Footer from '../Footer';
 
@@ -10,6 +11,7 @@ const Layout: FC<IProps> = ({ children, authenticated }) => {
   return (
     <div className="layout">
       <Nav authenticated={authenticated} />
+      {children}
       <Footer />
     </div>
   );
