@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import Button from '../../components/Button';
 import { Auth, IAuthContext } from '../../components/App';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
 import './style.scss';
 
@@ -21,10 +23,12 @@ function Login() {
   const [name, setName] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<Boolean>(false);
 
   const login = async (e: any) => {
     e.preventDefault();
     try {
+      setLoading(true);
       let res: any = await fetch('http://localhost:3000/api/v1/auth/login', {
         method: 'post',
         headers: {
@@ -55,6 +59,8 @@ function Login() {
     } catch (e) {
       console.log(e);
       setError('E-Mail/Telefonnummer oder Passwort falsch.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -71,7 +77,17 @@ function Login() {
         placeholder="Passwort"
         onChange={e => setPassword(e.target.value)}
       />
-      <Button onClick={login}>Login</Button>
+      {loading ? (
+        <Button>
+          <FontAwesomeIcon
+            icon={faCircleNotch}
+            className="loading-spinner"
+            spin
+          />
+        </Button>
+      ) : (
+        <Button onClick={login}>Login</Button>
+      )}
     </form>
   );
 }
@@ -86,10 +102,12 @@ function Register() {
   const [mail, setMail] = useState<string>('');
   const [phone, setPhone] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const register = async (e: any) => {
     e.preventDefault();
     try {
+      setLoading(true);
       if (password !== passwordRepeat)
         throw new Error('Passwords do not match.');
 
@@ -111,7 +129,6 @@ function Register() {
       });
 
       res = await res.json();
-      console.log(res);
 
       if (res.error) throw new Error(res.error);
       if (!res.token) throw new Error('No token provided.');
@@ -132,6 +149,8 @@ function Register() {
       setError(
         'Registrierung konnte nicht abgeschlossen werden. Überprüfen sie ihre Eingabe.',
       );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -176,7 +195,17 @@ function Register() {
         placeholder="Passwort wiederholen"
         onChange={e => setPasswordRepeat(e.target.value)}
       />
-      <Button onClick={register}>Registrieren</Button>
+      {loading ? (
+        <Button>
+          <FontAwesomeIcon
+            icon={faCircleNotch}
+            className="loading-spinner"
+            spin
+          />
+        </Button>
+      ) : (
+        <Button onClick={register}>Registrieren</Button>
+      )}
     </form>
   );
 }
