@@ -20,6 +20,10 @@ export interface IAuthContext {
   logout: Function;
 }
 
+export interface IAppState {
+  isInitialised: Boolean;
+}
+
 // Create Auth context
 // @ts-ignore
 export const Auth = React.createContext<IAuthContext>();
@@ -32,6 +36,7 @@ function App() {
     email: null,
     token: null,
   });
+  const [appState, setAppState] = useState<IAppState>({ isInitialised: false });
 
   useEffect(() => {
     const run = async () => {
@@ -50,6 +55,7 @@ function App() {
           console.log(e);
         }
       }
+      setAppState({ isInitialised: true });
     };
 
     run();
@@ -66,7 +72,7 @@ function App() {
     window.localStorage.removeItem('coronahelp-token');
   };
 
-  return (
+  return appState.isInitialised ? (
     <div className="App">
       <Auth.Provider value={{ auth, set: setAuth, logout: logout }}>
         <BrowserRouter>
@@ -76,7 +82,7 @@ function App() {
         </BrowserRouter>
       </Auth.Provider>
     </div>
-  );
+  ) : null;
 }
 
 export default App;
