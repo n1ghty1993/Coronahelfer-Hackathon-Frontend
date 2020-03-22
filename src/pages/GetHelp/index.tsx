@@ -11,6 +11,8 @@ import { callApi } from '../../api/requests';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+
 const GetHelp = () => {
   const auth: IAuthContext = useContext(Auth);
   return (
@@ -42,9 +44,7 @@ const Formular = () => {
   useEffect(() => {
     const run = async () => {
       try {
-        let categories: any = await fetch(
-          'http://localhost:3000/api/v1/category',
-        );
+        let categories: any = await fetch(`${SERVER_URL}/api/v1/category`);
         categories = await categories.json();
 
         if (categories.error || !categories.result)
@@ -75,9 +75,13 @@ const Formular = () => {
       )
         throw new Error('Some fields are empty.');
 
+      if (!auth || !auth.auth.authenticated) {
+        throw new Error('You need to be logged in.');
+      }
+
       let res = await callApi(
         '/request',
-        auth,
+        auth.auth.token as string,
         {
           title,
           description,
@@ -90,8 +94,6 @@ const Formular = () => {
         },
         'POST',
       );
-
-      console.log(res);
 
       if (res.error) throw new Error('Error while creating request.');
 

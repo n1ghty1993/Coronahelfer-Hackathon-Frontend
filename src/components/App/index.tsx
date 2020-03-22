@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import './style.scss';
 import Layout from '../Layout';
+import { callApi } from '../../api/requests';
 
 import Base from '../Routes';
 
@@ -43,16 +44,10 @@ function App() {
       // Check if jwt is valid
       if (window.localStorage.getItem('coronahelp-token')) {
         try {
-          let res: any = await fetch('http://localhost:3000/api/v1/users/me', {
-            headers: {
-              'Content-Type': 'application/json',
-              'X-Access-Token': window.localStorage.getItem(
-                'coronahelp-token',
-              ) as string,
-            },
-          });
-
-          res = await res.json();
+          let res: any = await callApi(
+            '/users/me',
+            window.localStorage.getItem('coronahelp-token') as string,
+          );
 
           if (res.error) throw new Error('Token invalid.');
 

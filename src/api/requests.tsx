@@ -1,15 +1,9 @@
-import { IAuthContext } from '../components/App';
-
 export const callApi = async (
   url = '',
-  auth?: IAuthContext,
+  token: string,
   data = {},
   method = 'GET',
 ) => {
-  if (!auth) {
-    return;
-  }
-
   const server = process.env.REACT_APP_SERVER_URL;
   const response = await fetch(`${server}/api/v1${url}`, {
     method,
@@ -17,7 +11,7 @@ export const callApi = async (
     cache: 'no-cache',
     headers: {
       'Content-Type': 'application/json',
-      'X-Access-Token': auth.auth.token as string,
+      'X-Access-Token': token,
     },
     body:
       method === 'POST' || method === 'PUT' ? JSON.stringify(data) : undefined, // body data type must match "Content-Type" header

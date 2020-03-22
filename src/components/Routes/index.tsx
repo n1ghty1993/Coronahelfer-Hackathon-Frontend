@@ -43,9 +43,7 @@ export default function Base() {
       </Route>
       <ProtectedRoute exact path="/profile/requests" component={MyRequests} />
       <ProtectedRoute exact path="/help" component={HelpWanted} />
-      <Route path="/get-help">
-        <GetHelp />
-      </Route>
+      <Route path="/get-help" component={GetHelp} />
       <Route path="/information">
         <div>Informationen</div>
       </Route>

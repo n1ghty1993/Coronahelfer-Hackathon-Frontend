@@ -18,7 +18,7 @@ const HelpWanted: FC = () => {
 
   useEffect(() => {
     const fetchRequests = async () => {
-      const result = await callApi('/request', auth);
+      const result = await callApi('/publicRequest', auth.auth.token as string);
       console.log(result);
       setRequests(result.result);
     };
