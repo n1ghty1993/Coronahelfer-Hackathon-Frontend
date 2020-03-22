@@ -1,9 +1,11 @@
 import React, { FC } from 'react';
+import { PortalWithState } from 'react-portal';
 import './style.scss';
 
 import { IRequest } from './types';
 
 import Button from '../../../../components/Button';
+import Offer from '../Offer';
 
 interface IProps {
   request: IRequest;
@@ -33,7 +35,17 @@ const Request: FC<IProps> = ({
             Hilfe!
           </sub>
         </div>
-        <Button isPrimary={true}>Helfen</Button>
+        <PortalWithState closeOnOutsideClick closeOnEsc>
+          {({ openPortal, closePortal, isOpen, portal }) => (
+            <React.Fragment>
+              <Button onClick={openPortal} isPrimary={true}>
+                Helfen
+              </Button>
+
+              {portal(<Offer requestId={request._id} />)}
+            </React.Fragment>
+          )}
+        </PortalWithState>
       </header>
       <p>
         <strong>Kategorie:</strong> {request.category}
