@@ -3,13 +3,21 @@ import './style.scss';
 
 interface IProps {
   isPrimary?: boolean;
+  size?: string;
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
   [x: string]: any;
 }
 
-const Button: FC<IProps> = ({ children, onClick, isPrimary, ...rest }) => {
+const Button: FC<IProps> = ({
+  children,
+  onClick,
+  isPrimary,
+  size,
+  ...rest
+}) => {
+  const className = `${isPrimary ? 'primary' : ''} ${size || ''}`;
   return (
-    <button className={isPrimary ? 'primary' : ''} onClick={onClick} {...rest}>
+    <button className={className} onClick={onClick} {...rest}>
       {children}
     </button>
   );

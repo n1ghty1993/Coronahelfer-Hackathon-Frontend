@@ -3,6 +3,7 @@ export interface IRequest {
   title: string;
   description: string;
   category: string;
+  _id: string;
 }
 
 interface IAddress {

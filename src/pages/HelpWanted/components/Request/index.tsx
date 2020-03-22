@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+
 import './style.scss';
 
 import { IRequest } from './types';
@@ -8,6 +9,7 @@ import Button from '../../../../components/Button';
 interface IProps {
   request: IRequest;
   user: any;
+  onClick: (requestId: string) => void;
 }
 
 const Request: FC<IProps> = ({
@@ -15,6 +17,7 @@ const Request: FC<IProps> = ({
   user = {
     firstName: 'Anonym',
   },
+  onClick,
 }) => {
   return (
     <article className="request">
@@ -33,7 +36,9 @@ const Request: FC<IProps> = ({
             Hilfe!
           </sub>
         </div>
-        <Button isPrimary={true}>Helfen</Button>
+        <Button onClick={() => onClick(request._id)} isPrimary={true}>
+          Helfen
+        </Button>
       </header>
       <p>
         <strong>Kategorie:</strong> {request.category}

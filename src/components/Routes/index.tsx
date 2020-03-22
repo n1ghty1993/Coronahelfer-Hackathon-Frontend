@@ -3,6 +3,8 @@ import { Switch, Route, Redirect, RouteProps } from 'react-router-dom';
 
 import StartPage from '../../pages/StartPage';
 import HelpWanted from '../../pages/HelpWanted';
+import Impressum from '../../pages/Impressum';
+import Privacy from '../../pages/Privacy';
 import Login from '../../pages/Login';
 import { Auth, IAuthContext } from '../App';
 import GetHelp from '../../pages/GetHelp';
@@ -42,8 +44,10 @@ export default function Base() {
         <StartPage />
       </Route>
       <ProtectedRoute exact path="/profile/requests" component={MyRequests} />
-      <ProtectedRoute exact path="/help" component={HelpWanted} />
-      <Route path="/get-help" component={GetHelp} />
+      <Route path="/help">
+        <HelpWanted />
+      </Route>
+      <ProtectedRoute path="/get-help" component={GetHelp} />
       <Route path="/information">
         <div>Informationen</div>
       </Route>
@@ -52,6 +56,12 @@ export default function Base() {
       </Route>
       <Route path="/flyer">
         <div>Flyer</div>
+      </Route>
+      <Route path="/impressum">
+        <Impressum />
+      </Route>
+      <Route path="/privacy">
+        <Privacy />
       </Route>
       {!auth.auth.authenticated && <Route path="/login" component={Login} />}
       <Redirect to="/" />

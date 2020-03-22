@@ -1,0 +1,45 @@
+@import '../../../../styles/colors.scss';
+
+.offer-form {
+    button {
+        float: right;
+    }
+
+    .message-screen {
+        display: flex;
+        flex-direction: column;
+        background-color: WHITE;
+        padding: 15px 30px;
+        border-radius: 25px;
+        max-width: 400px;
+        margin: auto;
+
+        a {
+            background-color: $secondary;
+            color: WHITE;
+            margin-top: 15px;
+            border: 0;
+            border-radius: 19px;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: 600;
+            padding: 10px 50px;
+            text-transform: uppercase;
+            text-align: center;
+            text-decoration: none;
+        }
+    }
+
+    textarea {
+        width: 100%;
+        background-color: LIGHTGRAY;
+        border: none;
+        box-shadow: none;
+        padding: 20px;
+        height: 300px;
+        box-sizing: border-box;
+        margin-bottom: 5px;
+        border-radius: 19px;
+        outline: none;
+    }
+}
