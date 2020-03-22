@@ -16,8 +16,6 @@ const Request: FC<IProps> = ({
     firstName: 'Anonym',
   },
 }) => {
-  const address = request.address;
-
   return (
     <article className="request">
       <header>
@@ -31,7 +29,8 @@ const Request: FC<IProps> = ({
         <div className="intro">
           <h2>{request.title}</h2>
           <sub>
-            {user.firstName} in {address.plz} - {address.city}
+            {user.firstName} wartet {request.distance} Meter entfernt auf deine
+            Hilfe!
           </sub>
         </div>
         <Button isPrimary={true}>Helfen</Button>
