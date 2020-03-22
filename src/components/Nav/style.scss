@@ -60,6 +60,7 @@ nav {
           margin-right: 15px;
         }
         ul.dropdown {
+          z-index: 15;
           position: absolute;
           background-color: $primary;
           list-style-type: none;
