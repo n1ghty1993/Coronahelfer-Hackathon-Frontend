@@ -40,7 +40,9 @@ export default function Base() {
       <Route exact path="/">
         <StartPage />
       </Route>
-      <ProtectedRoute exact path="/help" component={HelpWanted} />
+      <Route path="/help">
+        <HelpWanted />
+      </Route>
       <Route path="/get-help">
         <GetHelp />
       </Route>

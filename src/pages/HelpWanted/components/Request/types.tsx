@@ -1,8 +1,8 @@
 export interface IRequest {
+  distance: number;
   title: string;
   description: string;
   category: string;
-  address: IAddress;
 }
 
 interface IAddress {

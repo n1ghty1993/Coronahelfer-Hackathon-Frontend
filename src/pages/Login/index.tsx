@@ -5,11 +5,15 @@ import { Auth, IAuthContext } from '../../components/App';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
+import { callApi } from '../../api/requests';
+
 import './style.scss';
 
 interface ILoginState {
   from: string;
 }
+
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const Authenticate: FC<RouteComponentProps<{}, {}, ILoginState>> = props => {
   return (
@@ -37,7 +41,7 @@ const Login: FC<{ history: any }> = ({ history }) => {
       setLoading(true);
       if (name === '' || password === '')
         throw new Error('Fields cant be empty.');
-      let res: any = await fetch('http://localhost:3000/api/v1/auth/login', {
+      let res: any = await fetch(`${SERVER_URL}/api/v1/auth/login`, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
@@ -56,25 +60,21 @@ const Login: FC<{ history: any }> = ({ history }) => {
       // TODO: local or sessionstorage?
       window.localStorage.setItem('coronahelp-token', res.token);
 
-      let me: any = await fetch('http://localhost:3000/api/v1/users/me', {
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Access-Token': window.localStorage.getItem(
-            'coronahelp-token',
-          ) as string,
-        },
-      });
+      let me: any = await callApi(
+        '/users/me',
+        window.localStorage.getItem('coronahelp-token') as string,
+      );
 
-      me = await me.json();
+      me = await me;
 
       if (me.error) throw new Error('Token invalid.');
 
       auth.set({
         authenticated: true,
-        firstname: res.user.firstname,
-        lastname: res.user.lastname,
-        email: res.user.email,
-        token: res.token as string,
+        firstname: me.user.firstname,
+        lastname: me.user.lastname,
+        email: me.user.email,
+        token: me.token as string,
       });
 
       history.push(history.location.state ? history.location.state.from : '/');
@@ -136,7 +136,7 @@ function Register() {
       if (firstname === '' || lastname === '' || mail === '' || phone === '')
         throw new Error('Not all fields are filled.');
 
-      let res: any = await fetch('http://localhost:3000/api/v1/auth/register', {
+      let res: any = await fetch(`${SERVER_URL}/api/v1/auth/register`, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
