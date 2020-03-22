@@ -5,7 +5,6 @@ import './style.scss';
 import Layout from '../Layout';
 
 import Base from '../Routes';
-import { callApi } from '../../api/requests';
 
 export interface IAuth {
   authenticated: Boolean;
