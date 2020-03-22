@@ -12,7 +12,7 @@ export const callApi = async (
 
   const server = process.env.REACT_APP_SERVER_URL;
   const response = await fetch(`${server}/api/v1${url}`, {
-    method: 'GET',
+    method,
     mode: 'cors',
     cache: 'no-cache',
     headers: {

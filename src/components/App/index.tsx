@@ -58,8 +58,8 @@ function App() {
 
           setAuth({
             authenticated: true,
-            firstname: res.user.firstname,
-            lastname: res.user.lastname,
+            firstname: res.user.firstName,
+            lastname: res.user.lastName,
             email: res.user.email,
             token: window.localStorage.getItem('coronahelp-token') as string,
           });

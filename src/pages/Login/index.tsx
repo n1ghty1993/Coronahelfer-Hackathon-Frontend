@@ -66,22 +66,23 @@ const Login: FC<{ history: any }> = ({ history }) => {
       });
 
       me = await me.json();
+      console.log(me);
 
       if (me.error) throw new Error('Token invalid.');
 
       auth.set({
         authenticated: true,
-        firstname: res.user.firstname,
-        lastname: res.user.lastname,
-        email: res.user.email,
+        firstname: me.user.firstName,
+        lastname: me.user.lastName,
+        email: me.user.email,
         token: res.token as string,
       });
 
+      setLoading(false);
       history.push(history.location.state ? history.location.state.from : '/');
     } catch (e) {
       console.log(e);
       setError('E-Mail/Telefonnummer oder Passwort falsch.');
-    } finally {
       setLoading(false);
     }
   };
