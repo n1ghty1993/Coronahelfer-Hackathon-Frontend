@@ -26,6 +26,9 @@ const Nav: FC = () => {
           <Link to="/get-help">HILFE BEKOMMEN</Link>
         </li>
         <li>
+          <Link to="/flyer">FLYER</Link>
+        </li>
+        <li>
           <Link to="/information">INFORMATIONEN</Link>
         </li>
         <li>

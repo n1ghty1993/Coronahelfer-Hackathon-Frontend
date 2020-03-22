@@ -35,13 +35,15 @@ const Login: FC<{ history: any }> = ({ history }) => {
     e.preventDefault();
     try {
       setLoading(true);
+      if (name === '' || password === '')
+        throw new Error('Fields cant be empty.');
       let res: any = await fetch('http://localhost:3000/api/v1/auth/login', {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          userName: name,
+          email: name,
           password: password,
         }),
       });
@@ -54,13 +56,25 @@ const Login: FC<{ history: any }> = ({ history }) => {
       // TODO: local or sessionstorage?
       window.localStorage.setItem('coronahelp-token', res.token);
 
-      // TODO: Fetch User information
+      let me: any = await fetch('http://localhost:3000/api/v1/users/me', {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Access-Token': window.localStorage.getItem(
+            'coronahelp-token',
+          ) as string,
+        },
+      });
+
+      me = await me.json();
+
+      if (me.error) throw new Error('Token invalid.');
+
       auth.set({
-        token: res.token,
-        firstname: '',
-        lastname: '',
-        email: '',
         authenticated: true,
+        firstname: res.user.firstname,
+        lastname: res.user.lastname,
+        email: res.user.email,
+        token: res.token as string,
       });
 
       history.push(history.location.state ? history.location.state.from : '/');
