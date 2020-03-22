@@ -41,7 +41,7 @@ const Login: FC<{ history: any }> = ({ history }) => {
       setLoading(true);
       if (name === '' || password === '')
         throw new Error('Fields cant be empty.');
-      let res: any = await fetch(`http://coronahelfer.eu/api/v1/auth/login`, {
+      let res: any = await fetch(`http://coronahelfer.eu:3000/api/v1/auth/login`, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
