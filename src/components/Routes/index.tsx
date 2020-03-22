@@ -1,4 +1,4 @@
-import React, { useContext, FC } from 'react';
+import React, { useContext } from 'react';
 import { Switch, Route, Redirect, RouteProps } from 'react-router-dom';
 
 import StartPage from '../../pages/StartPage';
@@ -10,28 +10,28 @@ import MyRequests from '../../pages/MyRequests';
 
 export interface ProtectedRouteProps extends RouteProps {}
 
-const ProtectedRoute: FC<ProtectedRouteProps> = ({
-  component: Component,
-  path,
-  ...rest
-}) => {
-  const authCtx: IAuthContext = useContext(Auth);
+// const ProtectedRoute: FC<ProtectedRouteProps> = ({
+//   component: Component,
+//   path,
+//   ...rest
+// }) => {
+//   const authCtx: IAuthContext = useContext(Auth);
 
-  if (!authCtx.auth.authenticated) {
-    return (
-      <Redirect
-        to={{
-          pathname: '/login',
-          state: {
-            from: path,
-          },
-        }}
-      />
-    );
-  } else {
-    return <Route component={Component} {...rest} />;
-  }
-};
+//   if (!authCtx.auth.authenticated) {
+//     return (
+//       <Redirect
+//         to={{
+//           pathname: '/login',
+//           state: {
+//             from: path,
+//           },
+//         }}
+//       />
+//     );
+//   } else {
+//     return <Route component={Component} {...rest} />;
+//   }
+// };
 
 export default function Base() {
   const auth: IAuthContext = useContext(Auth);
