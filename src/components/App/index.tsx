@@ -49,14 +49,12 @@ function App() {
             window.localStorage.getItem('coronahelp-token') as string,
           );
 
-          res = await res.json();
-
           if (res.error) throw new Error('Token invalid.');
 
           setAuth({
             authenticated: true,
-            firstname: res.user.firstname,
-            lastname: res.user.lastname,
+            firstname: res.user.firstName,
+            lastname: res.user.lastName,
             email: res.user.email,
             token: window.localStorage.getItem('coronahelp-token') as string,
           });

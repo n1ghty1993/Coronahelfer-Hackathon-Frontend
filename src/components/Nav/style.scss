@@ -19,6 +19,7 @@ nav {
     display: flex;
     align-items: center;
     align-self: flex-end;
+    user-select: none;
     li {
       font-size: 13px;
       margin-left: 20px;
@@ -39,6 +40,54 @@ nav {
           color: WHITE;
           border: 0;
           font-size: 15px;
+        }
+      }
+      &.menu-btn {
+        background-color: $secondary;
+        padding: 6px 20px;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 200px;
+        box-sizing: border-box;
+        cursor: pointer;
+        span {
+          font-weight: 600;
+          font-size: 15px;
+          margin-right: 15px;
+        }
+        ul.dropdown {
+          position: absolute;
+          background-color: $primary;
+          list-style-type: none;
+          flex-direction: column;
+          top: 0;
+          right: 0;
+          margin-top: 100px;
+          margin-right: 80px;
+          display: flex;
+          padding: 3px 3px;
+          border-radius: 20px;
+          font-weight: 600;
+          font-size: 15px;
+          width: 200px;
+          box-sizing: border-box;
+          li {
+            text-align: left;
+            margin-left: 0;
+            padding: 10px 32px;
+            border-radius: 20px;
+            cursor: pointer;
+            &:hover {
+              background-color: $secondary;
+            }
+          }
+          &.hidden {
+            display: none;
+          }
         }
       }
     }

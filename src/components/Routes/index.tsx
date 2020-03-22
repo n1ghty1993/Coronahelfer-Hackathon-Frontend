@@ -6,6 +6,7 @@ import HelpWanted from '../../pages/HelpWanted';
 import Login from '../../pages/Login';
 import { Auth, IAuthContext } from '../App';
 import GetHelp from '../../pages/GetHelp';
+import MyRequests from '../../pages/MyRequests';
 
 export interface ProtectedRouteProps extends RouteProps {}
 
@@ -40,12 +41,9 @@ export default function Base() {
       <Route exact path="/">
         <StartPage />
       </Route>
-      <Route path="/help">
-        <HelpWanted />
-      </Route>
-      <Route path="/get-help">
-        <GetHelp />
-      </Route>
+      <ProtectedRoute exact path="/profile/requests" component={MyRequests} />
+      <ProtectedRoute exact path="/help" component={HelpWanted} />
+      <Route path="/get-help" component={GetHelp} />
       <Route path="/information">
         <div>Informationen</div>
       </Route>

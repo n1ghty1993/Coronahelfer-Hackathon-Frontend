@@ -36,6 +36,14 @@
       background-color: WHITE;
       padding: 15px 30px;
       border-radius: 25px;
+      .error {
+        background: RED;
+        color: WHITE;
+        padding: 10px 25px;
+        margin-bottom: 15px;
+        border-radius: 19px;
+        font-size: 13px;
+      }
       h1 {
         font-weight: 600;
       }

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Auth, IAuthContext } from '../../components/App';
+import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 
@@ -7,6 +8,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './style.scss';
 import Button from '../../components/Button';
 import { callApi } from '../../api/requests';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -22,6 +25,7 @@ const GetHelp = () => {
 };
 
 const Formular = () => {
+  const history = useHistory();
   const auth: IAuthContext = useContext(Auth);
   const [categories, setCategories] = useState<any[]>([]);
   const [category, setCategory] = useState(null);
@@ -33,6 +37,8 @@ const Formular = () => {
   const [enddate, setEnddate] = useState(new Date());
   const [streetNumber, setStreetNumber] = useState<string | null>('');
   const [forElse, setForElse] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   // Load categories
   useEffect(() => {
@@ -55,8 +61,10 @@ const Formular = () => {
   }, []);
 
   // create request
-  const send = async () => {
+  const send = async (e: any) => {
     try {
+      e.preventDefault();
+      setLoading(true);
       if (
         title === '' ||
         description === '' ||
@@ -71,31 +79,36 @@ const Formular = () => {
         throw new Error('You need to be logged in.');
       }
 
-      let res = await callApi('/request', auth.auth.token as string, {
-        title,
-        description,
-        category,
-        'address.plz': zip,
-        'address.city': city,
-        'address.street': streetNumber,
-        'address.street_nr': streetNumber,
-        time_end: enddate,
-      });
+      let res = await callApi(
+        '/request',
+        auth.auth.token as string,
+        {
+          title,
+          description,
+          category,
+          'address.plz': zip,
+          'address.city': city,
+          'address.street': streetNumber,
+          'address.street_nr': streetNumber,
+          time_end: enddate,
+        },
+        'POST',
+      );
 
       if (res.error) throw new Error('Error while creating request.');
 
-      // TODO: What todo if created
+      setLoading(false);
+      history.push('/profile/search');
     } catch (e) {
       console.log(e);
+      setLoading(false);
+      setError('Anzeige konnte nicht angelegt werden. Eingaben überprüfen.');
     }
   };
 
-  useEffect(() => {
-    console.log(forElse);
-  }, [forElse]);
-
   return (
     <form className="gethelpForm">
+      {error && <div className="error">{error}</div>}
       <h2>HILFE BEKOMMEN</h2>
       <h3>Wobei brauchen Sie Hilfe?</h3>
       <div className="withLabel">
@@ -157,7 +170,17 @@ const Formular = () => {
       />
       <h3>Hilfe für eine andere Person?</h3>
       <Switch set={setForElse} value={forElse} />
-      <Button onClick={send}>abschicken</Button>
+      {loading ? (
+        <Button>
+          <FontAwesomeIcon
+            icon={faCircleNotch}
+            className="loading-spinner"
+            spin
+          />
+        </Button>
+      ) : (
+        <Button onClick={send}>abschicken</Button>
+      )}
     </form>
   );
 };

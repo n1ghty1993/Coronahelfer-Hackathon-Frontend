@@ -65,23 +65,21 @@ const Login: FC<{ history: any }> = ({ history }) => {
         window.localStorage.getItem('coronahelp-token') as string,
       );
 
-      me = await me;
-
       if (me.error) throw new Error('Token invalid.');
 
       auth.set({
         authenticated: true,
-        firstname: me.user.firstname,
-        lastname: me.user.lastname,
+        firstname: me.user.firstName,
+        lastname: me.user.lastName,
         email: me.user.email,
-        token: me.token as string,
+        token: res.token as string,
       });
 
+      setLoading(false);
       history.push(history.location.state ? history.location.state.from : '/');
     } catch (e) {
       console.log(e);
       setError('E-Mail/Telefonnummer oder Passwort falsch.');
-    } finally {
       setLoading(false);
     }
   };
