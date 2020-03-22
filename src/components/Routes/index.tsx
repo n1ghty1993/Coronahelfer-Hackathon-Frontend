@@ -33,6 +33,8 @@ const ProtectedRoute: FC<ProtectedRouteProps> = ({
 };
 
 export default function Base() {
+  const auth: IAuthContext = useContext(Auth);
+
   return (
     <Switch>
       <Route exact path="/">
@@ -51,9 +53,7 @@ export default function Base() {
       <Route path="/flyer">
         <div>Flyer</div>
       </Route>
-      {!auth.auth.authenticated && (
-        <Route path="/login" component={Login} />
-      )}
+      {!auth.auth.authenticated && <Route path="/login" component={Login} />}
       <Redirect to="/" />
     </Switch>
   );
