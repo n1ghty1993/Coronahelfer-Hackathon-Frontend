@@ -5,7 +5,7 @@ export const callApi = async (
   method = 'GET',
 ) => {
   const server = process.env.REACT_APP_SERVER_URL;
-  const response = await fetch(`http://localhost:3000/api/v1${url}`, {
+  const response = await fetch(`http://coronahelfer.eu/:3000/api/v1${url}`, {
     method,
     mode: 'cors',
     cache: 'no-cache',
