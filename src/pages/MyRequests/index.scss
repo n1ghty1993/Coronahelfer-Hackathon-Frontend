@@ -1,0 +1,102 @@
+@import '../../styles/colors.scss';
+
+.myrequests {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .container {
+    width: 450px;
+    h1 {
+      color: WHITE;
+      font-size: 40px;
+      //   background: WHITE;
+      //   color: $primary;
+      box-sizing: border-box;
+      padding: 5px 10px;
+      border-radius: 19px;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: $primary;
+    }
+    .request {
+      background: WHITE;
+      color: $primary;
+      padding: 10px 25px;
+      border-radius: 19px;
+      margin-bottom: 15px;
+      > h2 {
+        margin-top: 10px;
+      }
+      .box {
+        border: 1px solid $primary;
+        padding: 10px 15px;
+        border-radius: 19px;
+        margin-bottom: 15px;
+      }
+      .tags {
+        display: flex;
+        justify-content: space-evenly;
+        span {
+          border-radius: 19px;
+          padding: 5px 10px;
+          background: $secondary;
+          color: WHITE;
+          font-size: 11px;
+          margin: 5px;
+        }
+      }
+    }
+  }
+}
+
+.helper {
+  .entry {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid $primary;
+    border-radius: 19px;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    > .head {
+      display: flex;
+      align-items: center;
+
+      .avatar {
+        height: 50px;
+        width: 50px;
+        border: 1px solid $primary;
+      }
+      > .right {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        > h2 {
+          margin: 0;
+        }
+        > .actions {
+          > button {
+            border-radius: 19px;
+            background: LIGHTGRAY;
+            padding: 0;
+            font-size: 12px;
+            color: WHITE;
+            padding: 3px 10px;
+            margin-right: 5px;
+            &.accept {
+              background: #2ecc40;
+            }
+            &.decline {
+              background: #ff4136;
+            }
+          }
+        }
+      }
+    }
+  }
+}
