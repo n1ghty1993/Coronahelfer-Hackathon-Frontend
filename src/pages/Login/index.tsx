@@ -71,10 +71,10 @@ const Login: FC<{ history: any }> = ({ history }) => {
 
       auth.set({
         authenticated: true,
-        firstname: res.user.firstname,
-        lastname: res.user.lastname,
-        email: res.user.email,
-        token: res.token as string,
+        firstname: me.user.firstname,
+        lastname: me.user.lastname,
+        email: me.user.email,
+        token: me.token as string,
       });
 
       history.push(history.location.state ? history.location.state.from : '/');
