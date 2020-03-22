@@ -1,16 +1,58 @@
+@import '../../styles/colors.scss';
+
 #modal-root {
     position: relative;
     z-index: 999;
 }
 
-.modal {
-    background-color: rgba(0, 0, 0, 0.5);
+.Modal {
+    background-color: white;
+    border-radius: 10px;
+    margin: 10px;
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+    padding: 20px;
+    max-width: 600px;
+    opacity: 1;
+
+    .close-modal {
+        cursor: pointer;
+        color: $primary;
+        background-color: LIGHTGRAY;
+        border-radius: 20px;
+        border: 2px solid white;
+        font-size: 12px;
+        width: 25px;
+        line-height: 20px;
+        position: absolute;
+        right: -10px;
+        top: -10px;
+        z-index: 1;
+        padding: 0;
+        text-align: center;
+    }
+}
+
+.Overlay {
     position: fixed;
-    height: 100%;
-    width: 100%;
     top: 0;
     left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    right: 0;
+    bottom: 0;
+
+    &:after {
+        content: "";
+        background: url('../../images/background.jpg') no-repeat;
+        background-size: cover;
+        opacity: 0.4;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: fixed;
+        z-index: -1;
+    }
 }

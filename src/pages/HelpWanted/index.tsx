@@ -29,6 +29,8 @@ const HelpWanted: FC = () => {
   const [selectedRequest, setSelectedRequest] = useState<string | null>();
   const [requests, setRequests] = useState<Array<IRequest>>([]);
 
+  Modal.setAppElement('#modal-root');
+
   const openModal = (requestId: string) => {
     setSelectedRequest(requestId);
   };
@@ -71,8 +73,13 @@ const HelpWanted: FC = () => {
             isOpen={!!selectedRequest}
             onRequestClose={closeModal}
             style={modalStyles}
-            contentLabel="Example Modal"
+            className="Modal"
+            overlayClassName="Overlay"
+            contentLabel="Modal Window"
           >
+            <button onClick={closeModal} className="close-modal">
+              X
+            </button>
             {selectedRequest && <Offer requestId={selectedRequest} />}
           </Modal>
         </div>
