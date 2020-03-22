@@ -65,7 +65,8 @@
         .left {
           width: 40%;
           .avatar {
-            background-color: LIGHTGRAY;
+            background: url('../../images/avatar.jpg') no-repeat;
+            background-size: cover;
             width: 65px;
             height: 65px;
             border-radius: 100%;

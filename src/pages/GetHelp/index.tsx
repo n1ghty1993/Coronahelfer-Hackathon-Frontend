@@ -8,6 +8,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './style.scss';
 import Button from '../../components/Button';
 import { callApi } from '../../api/requests';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
 const GetHelp = () => {
   const auth: IAuthContext = useContext(Auth);
@@ -166,7 +168,17 @@ const Formular = () => {
       />
       <h3>Hilfe für eine andere Person?</h3>
       <Switch set={setForElse} value={forElse} />
-      <Button onClick={send}>abschicken</Button>
+      {loading ? (
+        <Button>
+          <FontAwesomeIcon
+            icon={faCircleNotch}
+            className="loading-spinner"
+            spin
+          />
+        </Button>
+      ) : (
+        <Button onClick={send}>abschicken</Button>
+      )}
     </form>
   );
 };
