@@ -1,4 +1,5 @@
-import React, { useState, useContext } from 'react';
+import React, { FC, useState, useContext } from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 import Button from '../../components/Button';
 import { Auth, IAuthContext } from '../../components/App';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,19 +7,24 @@ import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
 import './style.scss';
 
-export default function Authenticate() {
+interface ILoginState {
+  from: string;
+}
+
+const Authenticate: FC<RouteComponentProps<{}, {}, ILoginState>> = props => {
   return (
     <div className="authenticate">
       <div className="container">
-        <Login />
+        <Login history={props.history} />
         <p className="divider">ODER</p>
         <Register />
       </div>
     </div>
   );
-}
+};
+export default Authenticate;
 
-function Login() {
+const Login: FC<{ history: any }> = ({ history }) => {
   const auth: IAuthContext = useContext(Auth);
   const [name, setName] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -70,6 +76,8 @@ function Login() {
         email: res.user.email,
         token: res.token as string,
       });
+
+      history.push(history.location.state ? history.location.state.from : '/');
     } catch (e) {
       console.log(e);
       setError('E-Mail/Telefonnummer oder Passwort falsch.');
@@ -104,7 +112,7 @@ function Login() {
       )}
     </form>
   );
-}
+};
 
 function Register() {
   const auth: IAuthContext = useContext(Auth);
