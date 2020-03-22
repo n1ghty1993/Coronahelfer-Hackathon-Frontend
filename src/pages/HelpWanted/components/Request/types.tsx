@@ -2,7 +2,12 @@ export interface IRequest {
   distance: number;
   title: string;
   description: string;
-  category: string;
+  category: {
+    _id: string;
+    name: string;
+    internal_id: number;
+    description: string;
+  };
   _id: string;
 }
 

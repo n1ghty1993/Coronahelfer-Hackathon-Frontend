@@ -41,7 +41,7 @@ const Request: FC<IProps> = ({
         </Button>
       </header>
       <p>
-        <strong>Kategorie:</strong> {request.category}
+        <strong>Kategorie:</strong> {request.category.name}
       </p>
       <p>
         <strong>Gesuch:</strong> {request.description}

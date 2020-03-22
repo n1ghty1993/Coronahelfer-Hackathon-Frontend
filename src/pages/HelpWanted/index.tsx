@@ -42,7 +42,7 @@ const HelpWanted: FC = () => {
   useEffect(() => {
     const fetchRequests = async () => {
       const result = await callApi('/publicRequest', auth.auth.token as string);
-      console.log(result);
+
       setRequests(result.result);
     };
 
@@ -59,9 +59,9 @@ const HelpWanted: FC = () => {
         <h1>Gesuche</h1>
       </Header>
       <Body>
-        {requests.map(request => (
+        {requests.map((request, idx) => (
           <Request
-            key={request.title}
+            key={request.title + idx}
             user={undefined}
             request={request}
             onClick={openModal}
