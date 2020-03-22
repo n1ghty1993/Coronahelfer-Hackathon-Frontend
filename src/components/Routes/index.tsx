@@ -5,6 +5,7 @@ import StartPage from '../../pages/StartPage';
 import HelpWanted from '../../pages/HelpWanted';
 import Login from '../../pages/Login';
 import { Auth, IAuthContext } from '../App';
+import GetHelp from '../../pages/GetHelp';
 
 export default function Base() {
   const auth: IAuthContext = useContext(Auth);
@@ -17,13 +18,16 @@ export default function Base() {
         <HelpWanted />
       </Route>
       <Route path="/get-help">
-        <div>Hilfe bekommen</div>
+        <GetHelp />
       </Route>
       <Route path="/information">
         <div>Informationen</div>
       </Route>
       <Route path="/contact">
         <div>Kontakt</div>
+      </Route>
+      <Route path="/flyer">
+        <div>Flyer</div>
       </Route>
       {!auth.auth.authenticated && (
         <Route path="/login">

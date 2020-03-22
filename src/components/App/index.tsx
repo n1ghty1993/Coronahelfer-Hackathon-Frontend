@@ -5,6 +5,7 @@ import './style.scss';
 import Layout from '../Layout';
 
 import Base from '../Routes';
+import { callApi } from '../../api/requests';
 
 export interface IAuth {
   authenticated: Boolean;
@@ -38,12 +39,24 @@ function App() {
       // Check if jwt is valid
       if (window.localStorage.getItem('coronahelp-token')) {
         try {
-          // TODO: Fetch user info /users/me
+          let res: any = await fetch('http://localhost:3000/api/v1/users/me', {
+            headers: {
+              'Content-Type': 'application/json',
+              'X-Access-Token': window.localStorage.getItem(
+                'coronahelp-token',
+              ) as string,
+            },
+          });
+
+          res = await res.json();
+
+          if (res.error) throw new Error('Token invalid.');
+
           setAuth({
             authenticated: true,
-            firstname: null,
-            lastname: null,
-            email: null,
+            firstname: res.user.firstname,
+            lastname: res.user.lastname,
+            email: res.user.email,
             token: window.localStorage.getItem('coronahelp-token') as string,
           });
         } catch (e) {
