@@ -44,7 +44,7 @@ const Formular = () => {
   useEffect(() => {
     const run = async () => {
       try {
-        let categories: any = await fetch(`${SERVER_URL}/api/v1/category`);
+        let categories: any = await fetch(`http://localhost:3000/api/v1/category`);
         categories = await categories.json();
 
         if (categories.error || !categories.result)
