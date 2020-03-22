@@ -47,14 +47,13 @@ const Offer: FC<IProps> = ({ requestId }) => {
 
   const auth: IAuthContext = useContext(Auth);
 
-  // TO DO link zu Profil
   if (success) {
     return (
       <div className="offer-form">
         <div className="message-screen">
           <h2>DANKE FÜR DEINE NACHRICHT</h2>
           <p>Du wirst bestimmt bald kontaktiert!</p>
-          <Link to="/profile">Zu deinen Hilfsangeboten</Link>
+          <Link to="/profile/requests">Zu deinen Anfragen</Link>
         </div>
       </div>
     );
