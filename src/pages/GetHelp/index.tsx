@@ -13,7 +13,7 @@ const GetHelp = () => {
   return (
     <div className="gethelp">
       <div className="container">
-        {!auth.auth.authenticated ? <Formular /> : <NotAuthenticated />}
+        {auth.auth.authenticated ? <Formular /> : <NotAuthenticated />}
       </div>
     </div>
   );
@@ -93,7 +93,7 @@ const Formular = () => {
   return (
     <form className="gethelpForm">
       <h2>HILFE BEKOMMEN</h2>
-      <h3>Wobei brauchen sie Hilfe?</h3>
+      <h3>Wobei brauchen Sie Hilfe?</h3>
       <div className="withLabel">
         <label>Kategorie</label>
         <select onChange={(e: any) => setCategory(e.target.value)}>
