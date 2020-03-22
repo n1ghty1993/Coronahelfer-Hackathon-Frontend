@@ -27,7 +27,7 @@ const HelpWanted: FC = () => {
     } catch (err) {
       console.log(err);
     }
-  });
+  }, [auth]);
 
   return (
     <div className="RequestPage">
