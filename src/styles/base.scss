@@ -12,17 +12,6 @@ body {
   margin: 0;
 }
 
-body {
-  &:after {
-    content: '';
-    display: block;
-    height: 80px;
-    /* Set same as footer's height */
-  }
-
-  position: relative;
-}
-
 h1,
 h2 {
   font-weight: 600;
