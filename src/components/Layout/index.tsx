@@ -7,9 +7,11 @@ import Footer from '../Footer';
 
 const Layout: FC = ({ children }) => {
   return (
-    <div className="layout">
-      <Nav />
-      {children}
+    <div className="layout page-container">
+      <div className="content-wrap">
+        <Nav />
+        {children}
+      </div>
       <Footer />
     </div>
   );

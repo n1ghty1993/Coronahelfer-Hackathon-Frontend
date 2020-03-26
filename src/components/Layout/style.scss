@@ -12,4 +12,15 @@
         margin: auto;
         max-width: 600px;
     }
+
+}
+
+.page-container {
+    position: relative;
+    min-height: 100vh;
+
+    .content-wrap {
+        /* room for the sticky footer */
+        padding-bottom: 80px;
+    }
 }
