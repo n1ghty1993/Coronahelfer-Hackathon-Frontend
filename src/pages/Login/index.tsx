@@ -41,7 +41,7 @@ const Login: FC<{ history: any }> = ({ history }) => {
       setLoading(true);
       if (name === '' || password === '')
         throw new Error('Fields cant be empty.');
-      let res: any = await fetch(`http://coronahelfer.eu:3000/api/v1/auth/login`, {
+      let res: any = await fetch(`backend:3000/api/v1/auth/login`, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
@@ -134,7 +134,7 @@ function Register() {
       if (firstname === '' || lastname === '' || mail === '' || phone === '')
         throw new Error('Not all fields are filled.');
 
-      let res: any = await fetch(`http://coronahelfer.eu:3000/api/v1/auth/register`, {
+      let res: any = await fetch(`backend:3000/api/v1/auth/register`, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
